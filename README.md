@@ -1,54 +1,90 @@
-# React + TypeScript + Vite
+# Shift Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack application for managing work shifts with a React frontend and NestJS backend.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📅 Monthly and weekly calendar views
+- ➕ Create, update, and delete shifts
+- 🎨 Color-coded shift visualization
+- 👥 Agent requirement management
+- 📱 Responsive design
+- 🔄 Real-time data synchronization
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Radix UI components
+- Custom hooks for API integration
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Backend
+- NestJS with TypeScript
+- PostgreSQL database
+- TypeORM for database operations
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Getting Started
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Prerequisites
+- Node.js 18+
+- PostgreSQL 15+
+
+
+
+### Frontend Setup
+
+1. **Install dependencies:**
+   
+   pnpm install
+
+
+2. **Set up environment variables:**
+  
+   cp .env.example .env
+
+  
+
+3. **Start the frontend:**
+ 
+   pnpm run dev
+  
+
+   The app will be available at `http://localhost:5173`
+
+
+## API Endpoints
+
+### Shifts
+- `GET /shifts` - Get all shifts
+- `POST /shifts` - Create a new shift
+- `GET /shifts/:id` - Get a specific shift
+- `PATCH /shifts/:id` - Update a shift
+- `DELETE /shifts/:id` - Delete a shift
+
+## Database Schema
+
+
+
+
+## Development
+
+### Adding New Features
+
+1. **Backend (NestJS):**
+    - Add new entities in `src/entities/`
+    - Create DTOs in `src/dto/`
+    - Implement services in `src/services/`
+    - Add controllers in `src/controllers/`
+
+2. **Frontend (React):**
+    - Add components in `src/components/`
+    - Create hooks in `src/hooks/`
+    - Update types in `src/types/`
+    - Add API calls in `src/services/`
+
+## License
+
+This project is licensed under the MIT License.
