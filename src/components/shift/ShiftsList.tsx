@@ -28,7 +28,7 @@ export default function ShiftsList({ shifts, onCreateShift }: ShiftsListProps) {
                             <div className="flex items-center gap-4">
                                 <div className="w-4 h-4 rounded-full" style={{ backgroundColor: shift.color }} />
                                 <div>
-                                    <div className="font-medium">{shift.name}</div>
+                                    <div className="font-medium">{shift.shiftName}</div>
                                     <div className="text-sm text-gray-500">{shift.description}</div>
                                     <div className="text-sm text-gray-500">
                                         {shift.startTime} - {shift.endTime} • {shift.days.join(", ")}

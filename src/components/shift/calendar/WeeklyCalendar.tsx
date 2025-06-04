@@ -28,7 +28,7 @@ export default function WeeklyCalendar({ shifts }: WeeklyCalendarProps) {
                             </div>
                             {shift ? (
                                 <div className="p-3 rounded-lg text-white text-sm" style={{ backgroundColor: shift.color }}>
-                                    <div className="font-medium">{shift.name}</div>
+                                    <div className="font-medium">{shift.shiftName}</div>
                                     <div className="text-xs opacity-90">
                                         {shift.startTime} - {shift.endTime}
                                     </div>

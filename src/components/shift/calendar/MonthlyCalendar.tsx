@@ -71,13 +71,13 @@ export default function MonthlyCalendar({ shifts }: MonthlyCalendarProps) {
                             </div>
                             {shift && (
                                 <div
-                                    className="text-xs p-1 rounded text-white truncate"
+                                    className="text-xs p-1 rounded text-white"
                                     style={{ backgroundColor: shift.color }}
-                                    title={`${shift.name} (${shift.startTime} - ${shift.endTime})`}
+                                    title={`${shift.shiftName} (${shift.startTime} - ${shift.endTime})`}
                                 >
-                                    {shift.name}
-                                </div>
-                            )}
+                                    <div className="truncate">{shift.shiftName}</div>
+                                    <div className="text-[10px] opacity-80">{`${shift.startTime} - ${shift.endTime}`}</div>
+                                </div>                            )}
                         </div>
                     )
                 })}

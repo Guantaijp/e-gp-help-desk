@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001"
 
 export interface ApiShift {
     id: string
-    name: string
+    shiftName: string
     description: string
     color: string
     startTime: string
@@ -14,7 +14,7 @@ export interface ApiShift {
 }
 
 export interface CreateShiftRequest {
-    name: string
+    shiftName: string
     description?: string
     color: string
     startTime: string

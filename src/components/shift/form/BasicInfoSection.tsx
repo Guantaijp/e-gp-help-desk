@@ -20,8 +20,8 @@ export default function BasicInfoSection({ shift, onChange }: BasicInfoSectionPr
                 <Input
                     id="shiftName"
                     placeholder="Enter shift name"
-                    value={shift.name}
-                    onChange={(e) => onChange({ ...shift, name: e.target.value })}
+                    value={shift.shiftName}
+                    onChange={(e) => onChange({ ...shift, shiftName: e.target.value })}
                     className="mt-2"
                 />
             </div>

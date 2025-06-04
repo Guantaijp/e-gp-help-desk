@@ -13,7 +13,7 @@ interface CreateShiftPageProps {
 
 export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShiftPageProps) {
     const [newShift, setNewShift] = useState<NewShift>({
-        name: "",
+        shiftName: "",
         description: "",
         color: "#22d3ee",
         startTime: "09:00",
@@ -25,7 +25,7 @@ export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShift
     const [validationError, setValidationError] = useState<string | null>(null)
 
     const validateShift = (shift: NewShift): string | null => {
-        if (!shift.name.trim()) {
+        if (!shift. shiftName.trim()) {
             return "Shift name is required"
         }
         if (shift.days.length === 0) {
@@ -55,7 +55,7 @@ export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShift
 
     return (
         <div className="flex-1 p-6">
-            <Card className="max-w-4xl">
+            <Card className="max-w-4xl mx-auto">
                 <CardContent className="p-6">
                     <ShiftForm shift={newShift} onChange={setNewShift} />
 

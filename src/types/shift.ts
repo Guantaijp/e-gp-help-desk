@@ -1,6 +1,6 @@
 export interface Shift {
     id: string
-    name: string
+    shiftName: string
     description: string
     color: string
     startTime: string
@@ -10,7 +10,7 @@ export interface Shift {
 }
 
 export interface NewShift {
-    name: string
+    shiftName: string
     description: string
     color: string
     startTime: string

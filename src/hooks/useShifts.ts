@@ -7,7 +7,7 @@ import type { Shift } from "../types/shift"
 // Convert API shift to frontend shift format
 const convertApiShiftToShift = (apiShift: ApiShift): Shift => ({
     id: apiShift.id,
-    name: apiShift.name,
+    shiftName: apiShift.shiftName,
     description: apiShift.description || "",
     color: apiShift.color,
     startTime: apiShift.startTime,
@@ -18,7 +18,7 @@ const convertApiShiftToShift = (apiShift: ApiShift): Shift => ({
 
 // Convert frontend shift to API format
 const convertShiftToApiRequest = (shift: Omit<Shift, "id">): CreateShiftRequest => ({
-    name: shift.name,
+    shiftName: shift.shiftName,
     description: shift.description || undefined,
     color: shift.color,
     startTime: shift.startTime,
