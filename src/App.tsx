@@ -5,30 +5,44 @@ import Sidebar from "../src/components/layout/Sidebar"
 import Header from "../src/components/layout/Header"
 import ShiftManagement from "../src/components/shift/ShiftManagement"
 import CreateShiftPage from "../src/components/shift/CreateShiftPage"
-import type { Shift } from "./types/shift.ts"
+import { useShifts } from "./hooks/useShifts.ts"
+import type { NewShift } from "./types/shift"
+import LoadingSpinner from "./components/ui/loading-spinner.tsx";
+import ErrorMessage from "./components/ui/error-message.tsx";
 
 export default function App() {
     const [currentView, setCurrentView] = useState<"main" | "create-shift">("main")
-    const [shifts, setShifts] = useState<Shift[]>([
-        {
-            id: "1",
-            name: "Morning Shift",
-            description: "Regular morning hours",
-            color: "#22d3ee",
-            startTime: "09:00",
-            endTime: "17:00",
-            days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            requiredAgents: 1,
-        },
-    ])
+    const { shifts, loading, error, createShift } = useShifts()
 
-    const handleCreateShift = (newShift: Omit<Shift, "id">) => {
-        const shift: Shift = {
-            id: Date.now().toString(),
-            ...newShift,
+    const handleCreateShift = async (newShift: NewShift) => {
+        try {
+            await createShift(newShift)
+            setCurrentView("main")
+        } catch (err) {
+            console.error("Failed to create shift:", err)
         }
-        setShifts([...shifts, shift])
-        setCurrentView("main")
+    }
+
+    if (loading) {
+        return (
+            <div className="flex h-screen bg-gray-50">
+                <Sidebar />
+                <div className="flex-1 flex items-center justify-center">
+                    <LoadingSpinner />
+                </div>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="flex h-screen bg-gray-50">
+                <Sidebar />
+                <div className="flex-1 flex items-center justify-center">
+                    <ErrorMessage message={error} />
+                </div>
+            </div>
+        )
     }
 
     return (
