@@ -31,7 +31,9 @@ export default function ShiftsList({ shifts, onCreateShift }: ShiftsListProps) {
                                     <div className="font-medium">{shift.shiftName}</div>
                                     <div className="text-sm text-gray-500">{shift.description}</div>
                                     <div className="text-sm text-gray-500">
-                                        {shift.startTime} - {shift.endTime} • {shift.days.join(", ")}
+                                        {shift.startTime} - {shift.endTime} • {
+                                        shift.days?.replace(/[^a-zA-Z, ]/g, "") || "No days"
+                                    }
                                     </div>
                                 </div>
                             </div>
