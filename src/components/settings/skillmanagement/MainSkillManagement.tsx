@@ -1,6 +1,6 @@
 "use client"
-import { SkillManagementTabs } from "./skillmanagement/skill-management-tabs.tsx"
-import { SettingsSidebar } from "./skillmanagement/settings-sidebar.tsx"
+import { SkillManagementTabs } from "./skill-management-tabs.tsx"
+import { SettingsSidebar } from "../settings-sidebar.tsx"
 
 export default function SkillManagementPage() {
     return (

@@ -9,7 +9,8 @@ import { useAuth, AuthProvider } from "./hooks/use-auth.tsx"
 import { Skeleton } from "./components/ui/skeleton.tsx"
 import { LoginForm } from "./components/socialmedia/login-form.tsx"
 import ShiftManagement from "./components/shift/ShiftManagement.tsx";
-import SkillManagementPage from "./components/settings/MainSkillManagement.tsx";
+import SkillManagementPage from "./components/settings/skillmanagement/MainSkillManagement.tsx";
+import GeneralSettings from "./components/settings/general-settings/MainGeneralSettings.tsx"
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -114,6 +115,16 @@ function AppContent() {
                     <ProtectedRoute>
                         <AppLayout>
                             <SkillManagementPage />
+                        </AppLayout>
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/settings/general"
+                element={
+                    <ProtectedRoute>
+                        <AppLayout>
+                            <GeneralSettings />
                         </AppLayout>
                     </ProtectedRoute>
                 }
