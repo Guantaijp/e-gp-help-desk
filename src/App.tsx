@@ -9,6 +9,7 @@ import { useAuth, AuthProvider } from "./hooks/use-auth.tsx"
 import { Skeleton } from "./components/ui/skeleton.tsx"
 import { LoginForm } from "./components/socialmedia/login-form.tsx"
 import ShiftManagement from "./components/shift/ShiftManagement.tsx";
+import SkillManagementPage from "./components/settings/MainSkillManagement.tsx";
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -41,7 +42,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
                 <div className="flex h-screen">
                     <main className="
                         flex-1 flex flex-col overflow-hidden transition-all duration-300 ease-in-out
-                        ml-0 md:ml-16 lg:ml-64
+                        ml-0 md:ml-0 lg:ml-44
                     ">
                         <div className="flex-1 overflow-y-auto">
                             <div className="p-4 sm:p-6 lg:p-8 w-full">
@@ -103,6 +104,16 @@ function AppContent() {
                     <ProtectedRoute>
                         <AppLayout>
                             <ShiftManagement />
+                        </AppLayout>
+                    </ProtectedRoute>
+                }
+            />
+            <Route
+                path="/settings"
+                element={
+                    <ProtectedRoute>
+                        <AppLayout>
+                            <SkillManagementPage />
                         </AppLayout>
                     </ProtectedRoute>
                 }
