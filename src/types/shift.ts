@@ -5,7 +5,7 @@ export interface Shift {
     color: string
     startTime: string
     endTime: string
-    days: string
+    days: string[];
     requiredAgents: number
 }
 

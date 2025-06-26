@@ -14,9 +14,8 @@ const convertApiShiftToShift = (apiShift: ApiShift): Shift => ({
     endTime: apiShift.endTime,
     days: apiShift.days,
     requiredAgents: apiShift.requiredAgents,
-})
+});
 
-// Convert frontend shift to API format
 const convertShiftToApiRequest = (shift: Omit<Shift, "id">): CreateShiftRequest => ({
     shiftName: shift.shiftName,
     description: shift.description || undefined,
@@ -25,7 +24,8 @@ const convertShiftToApiRequest = (shift: Omit<Shift, "id">): CreateShiftRequest 
     endTime: shift.endTime,
     days: shift.days,
     requiredAgents: shift.requiredAgents,
-})
+});
+
 
 export function useShifts() {
     const [shifts, setShifts] = useState<Shift[]>([])
