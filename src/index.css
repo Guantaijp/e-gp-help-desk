@@ -5,24 +5,24 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #312e81;
+  --foreground: #000000;
   --card: #ffffff;
-  --card-foreground: #312e81;
+  --card-foreground: #000000;
   --popover: #ffffff;
-  --popover-foreground: #312e81;
+  --popover-foreground: #000000;
   --primary: #a855f7;
   --primary-foreground: #ffffff;
   --secondary: #f3f0ff;
   --secondary-foreground: #4338ca;
   --muted: #f5f3ff;
-  --muted-foreground: #7c3aed;
+  --muted-foreground: #000000;
   --accent: #dbeafe;
   --accent-foreground: #1e40af;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e0e7ff;
   --input: #e0e7ff;
-  --ring: #8b5cf6;
+  --ring: #000000;
   --chart-1: #8b5cf6;
   --chart-2: #7c3aed;
   --chart-3: #6d28d9;
@@ -39,15 +39,15 @@
   --font-sans: Poppins, sans-serif;
   --font-serif: Poppins, sans-serif;
   --font-mono: Poppins, sans-serif;
-  --radius: 0.55rem;
-  --shadow-2xs: 2px 2px 4px 0px hsl(255 86% 66% / 0.10);
-  --shadow-xs: 2px 2px 4px 0px hsl(255 86% 66% / 0.10);
-  --shadow-sm: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 1px 2px -1px hsl(255 86% 66% / 0.20);
-  --shadow: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 1px 2px -1px hsl(255 86% 66% / 0.20);
-  --shadow-md: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 2px 4px -1px hsl(255 86% 66% / 0.20);
-  --shadow-lg: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 4px 6px -1px hsl(255 86% 66% / 0.20);
-  --shadow-xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 8px 10px -1px hsl(255 86% 66% / 0.20);
-  --shadow-2xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.50);
+  --radius: 0.5rem;
+  --shadow-2xs: 2px 2px 2px 0px hsl(255 86% 96% / 0.00);
+  --shadow-xs: 2px 2px 2px 0px hsl(255 86% 96% / 0.00);
+  --shadow-sm: 2px 2px 2px 0px hsl(255 86% 96% / 0.00), 2px 1px 2px -1px hsl(255 86% 96% / 0.00);
+  --shadow: 2px 2px 2px 0px hsl(255 86% 96% / 0.00), 2px 1px 2px -1px hsl(255 86% 96% / 0.00);
+  --shadow-md: 2px 2px 2px 0px hsl(255 86% 96% / 0.00), 2px 2px 4px -1px hsl(255 86% 96% / 0.00);
+  --shadow-lg: 2px 2px 2px 0px hsl(255 86% 96% / 0.00), 2px 4px 6px -1px hsl(255 86% 96% / 0.00);
+  --shadow-xl: 2px 2px 2px 0px hsl(255 86% 96% / 0.00), 2px 8px 10px -1px hsl(255 86% 96% / 0.00);
+  --shadow-2xl: 2px 2px 2px 0px hsl(255 86% 96% / 0.00);
 }
 
 .dark {
@@ -86,15 +86,15 @@
   --font-sans: Poppins, sans-serif;
   --font-serif: Poppins, sans-serif;
   --font-mono: Poppins, sans-serif;
-  --radius: 0.55rem;
-  --shadow-2xs: 2px 2px 4px 0px hsl(255 86% 56% / 0.10);
-  --shadow-xs: 2px 2px 4px 0px hsl(255 86% 56% / 0.10);
-  --shadow-sm: 2px 2px 4px 0px hsl(255 86% 66% / 0.10), 2px 1px 2px -1px hsl(255 86% 66% / 0.20);
-  --shadow: 2px 2px 4px 0px hsl(255 86% 66% / 0.10), 2px 1px 2px -1px hsl(255 86% 66% / 0.20);
-  --shadow-md: 2px 2px 4px 0px hsl(255 86% 66% / 0.10), 2px 2px 4px -1px hsl(255 86% 66% / 0.20);
-  --shadow-lg: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 4px 6px -1px hsl(255 86% 66% / 0.20);
-  --shadow-xl: 2px 2px 4px 0px hsl(255 86% 66% / 0.20), 2px 8px 10px -1px hsl(255 86% 66% / 0.20);
-  --shadow-2xl: 2px 2px 4px 0px hsl(255 86% 56% / 0.50);
+  --radius: 0.5rem;
+  --shadow-2xs: 2px 2px 2px 0px hsl(255 86% 66% / 0.00);
+  --shadow-xs: 2px 2px 2px 0px hsl(255 86% 66% / 0.00);
+  --shadow-sm: 2px 2px 2px 0px hsl(255 86% 66% / 0.00), 2px 1px 2px -1px hsl(255 86% 66% / 0.00);
+  --shadow: 2px 2px 2px 0px hsl(255 86% 66% / 0.00), 2px 1px 2px -1px hsl(255 86% 66% / 0.00);
+  --shadow-md: 2px 2px 2px 0px hsl(255 86% 66% / 0.00), 2px 2px 4px -1px hsl(255 86% 66% / 0.00);
+  --shadow-lg: 2px 2px 2px 0px hsl(255 86% 66% / 0.00), 2px 4px 6px -1px hsl(255 86% 66% / 0.00);
+  --shadow-xl: 2px 2px 2px 0px hsl(255 86% 66% / 0.00), 2px 8px 10px -1px hsl(255 86% 66% / 0.00);
+  --shadow-2xl: 2px 2px 2px 0px hsl(255 86% 66% / 0.00);
 }
 
 @theme inline {

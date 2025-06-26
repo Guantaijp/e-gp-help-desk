@@ -1,10 +1,10 @@
 import type { Shift } from "../types/shift"
 
-export function useCalendarUtils(shifts: Shift[]) {
+export function useCalendarUtils(shifts: Shift[]=[]) {
     const getShiftForDay = (day: string) => {
-        return shifts.find((shift) => shift.days.includes(day))
+        if (!Array.isArray(shifts)) return undefined;
+        return shifts.find((shift) => Array.isArray(shift.days) && shift.days.includes(day));
     }
-
     const getDaysInMonth = (date: Date) => {
         const year = date.getFullYear()
         const month = date.getMonth()

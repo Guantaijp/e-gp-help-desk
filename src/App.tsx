@@ -8,6 +8,7 @@ import Dashboard from "../src/components/dashboard.tsx"
 import { useAuth, AuthProvider } from "./hooks/use-auth.tsx"
 import { Skeleton } from "./components/ui/skeleton.tsx"
 import { LoginForm } from "./components/socialmedia/login-form.tsx"
+import ShiftManagement from "./components/shift/ShiftManagement.tsx";
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -36,7 +37,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
     return (
         <SidebarProvider>
             <Sidebar />
-            <div className="min-h-screen w-full mx-auto bg-gray-50">
+            <div className="min-h-screen w-full mx-auto bg-white">
                 <div className="flex h-screen">
                     <main className="
                         flex-1 flex flex-col overflow-hidden transition-all duration-300 ease-in-out
@@ -91,6 +92,17 @@ function AppContent() {
                     <ProtectedRoute>
                         <AppLayout>
                             <SocialMediaDashboard />
+                        </AppLayout>
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/work-shifts"
+                element={
+                    <ProtectedRoute>
+                        <AppLayout>
+                            <ShiftManagement />
                         </AppLayout>
                     </ProtectedRoute>
                 }

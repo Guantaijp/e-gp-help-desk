@@ -6,7 +6,7 @@ import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import MonthlyCalendar from "./calendar/MonthlyCalendar"
 import WeeklyCalendar from "./calendar/WeeklyCalendar"
-import type { Shift } from "../../types/shift.ts"
+import type { Shift } from "../../types/shift"
 
 interface CalendarViewProps {
     shifts: Shift[]
@@ -26,7 +26,7 @@ export default function CalendarView({ shifts, onCreateShift }: CalendarViewProp
                             variant={calendarView === "monthly" ? "default" : "outline"}
                             size="sm"
                             onClick={() => setCalendarView("monthly")}
-                            className={calendarView === "monthly" ? "bg-green-600 hover:bg-green-700" : ""}
+                            className={calendarView === "monthly" ? "bg-purple-600 hover:bg-purple-700" : ""}
                         >
                             Monthly
                         </Button>
@@ -34,13 +34,13 @@ export default function CalendarView({ shifts, onCreateShift }: CalendarViewProp
                             variant={calendarView === "weekly" ? "default" : "outline"}
                             size="sm"
                             onClick={() => setCalendarView("weekly")}
-                            className={calendarView === "weekly" ? "bg-green-600 hover:bg-green-700" : ""}
+                            className={calendarView === "weekly" ? "bg-purple-600 hover:bg-purple-700" : ""}
                         >
                             Weekly
                         </Button>
                     </div>
                 </div>
-                <Button className="bg-green-600 hover:bg-green-700" onClick={onCreateShift}>
+                <Button className="bg-purple-600 hover:bg-purple-700" onClick={onCreateShift}>
                     <Plus className="w-4 h-4 mr-2" />
                     Create New Shift
                 </Button>

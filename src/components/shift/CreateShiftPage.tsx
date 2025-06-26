@@ -13,23 +13,42 @@ interface CreateShiftPageProps {
 
 export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShiftPageProps) {
     const [newShift, setNewShift] = useState<NewShift>({
-        shiftName: "",
+        name: "",
         description: "",
         color: "#22d3ee",
         startTime: "09:00",
         endTime: "17:00",
         days: [],
-        requiredAgents: 1,
+        agentCount: 1,
+        breaks: [],
+        skillIds: [],
+        agentIds: [],
+        validateBusinessHours: true,
+        advancedSettings: {
+            recurrence: "weekly",
+            overlapMinutes: 15,
+            notifications: {
+                notifyAgentsOnAssignment: true,
+                sendReminders: false,
+            },
+            coverRequests: {
+                allowCoverRequests: true,
+                autoApproveCoverRequests: false,
+            },
+        },
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [validationError, setValidationError] = useState<string | null>(null)
 
     const validateShift = (shift: NewShift): string | null => {
-        if (!shift. shiftName.trim()) {
+        if (!shift.name.trim()) {
             return "Shift name is required"
         }
         if (shift.days.length === 0) {
             return "At least one day must be selected"
+        }
+        if (shift.startTime >= shift.endTime) {
+            return "End time must be after start time"
         }
         return null
     }
@@ -48,6 +67,7 @@ export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShift
             await onCreateShift(newShift)
         } catch (err) {
             console.error("Error submitting shift:", err)
+            setValidationError("Failed to create shift. Please try again.")
         } finally {
             setIsSubmitting(false)
         }
@@ -57,6 +77,11 @@ export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShift
         <div className="flex-1 p-6">
             <Card className="max-w-4xl mx-auto">
                 <CardContent className="p-6">
+                    <div className="mb-6">
+                        <h1 className="text-2xl font-bold text-gray-900">Create New Shift</h1>
+                        <p className="text-gray-600">Set up a new shift schedule for your team</p>
+                    </div>
+
                     <ShiftForm shift={newShift} onChange={setNewShift} />
 
                     {validationError && (
@@ -67,7 +92,7 @@ export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShift
                         <Button variant="outline" onClick={onCancel} disabled={isSubmitting}>
                             Cancel
                         </Button>
-                        <Button className="bg-green-600 hover:bg-green-700" onClick={handleSubmit} disabled={isSubmitting}>
+                        <Button className="bg-purple-600 hover:bg-purple-700" onClick={handleSubmit} disabled={isSubmitting}>
                             {isSubmitting ? "Creating..." : "Create Shift"}
                         </Button>
                     </div>
