@@ -1,5 +1,5 @@
 "use client"
-import { Plus, Edit, Trash2, Clock, Users, Coffee } from "lucide-react"
+import { Plus, Edit, Trash2, Clock, Users, Coffee, Eye } from "lucide-react"
 import { Button } from "../ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Badge } from "../ui/badge"
@@ -20,11 +20,19 @@ interface ShiftsListProps {
     shifts: Shift[]
     onCreateShift: () => void
     onEditShift: (shift: Shift) => void
+    onViewShift: (shift: Shift) => void
     onDeleteShift: (id: string) => Promise<void>
     isDeleting?: string
 }
 
-export default function ShiftsList({ shifts, onCreateShift, onEditShift, onDeleteShift, isDeleting }: ShiftsListProps) {
+export default function ShiftsList({
+                                       shifts,
+                                       onCreateShift,
+                                       onEditShift,
+                                       onViewShift,
+                                       onDeleteShift,
+                                       isDeleting,
+                                   }: ShiftsListProps) {
     if (!shifts || shifts.length === 0) {
         return (
             <Card>
@@ -122,6 +130,9 @@ export default function ShiftsList({ shifts, onCreateShift, onEditShift, onDelet
                                 </div>
                             </div>
                             <div className="flex items-center gap-2 ml-4">
+                                <Button variant="outline" size="sm" onClick={() => onViewShift(shift)}>
+                                    <Eye className="w-4 h-4" />
+                                </Button>
                                 <Button variant="outline" size="sm" onClick={() => onEditShift(shift)}>
                                     <Edit className="w-4 h-4" />
                                 </Button>

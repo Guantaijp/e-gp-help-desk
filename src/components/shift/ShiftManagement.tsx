@@ -8,15 +8,17 @@ import CalendarView from "./CalendarView"
 import ShiftsList from "./ShiftsList"
 import CreateShiftPage from "./CreateShiftPage"
 import EditShiftPage from "./EditShiftPage"
+import ViewShiftPage from "./shift-detail-view.tsx"
 import { apiService } from "../../services/api"
 import { mapApiShiftToShift, mapNewShiftToCreateRequest } from "../../lib/shift-mapper.ts"
 import type { Shift, NewShift } from "../../types/shift"
 
 export default function ShiftManagement() {
     const [activeTab, setActiveTab] = useState("calendar")
-    const [currentView, setCurrentView] = useState<"main" | "create" | "edit">("main")
+    const [currentView, setCurrentView] = useState<"main" | "create" | "edit" | "view">("main")
     const [shifts, setShifts] = useState<Shift[]>([])
     const [editingShift, setEditingShift] = useState<Shift | null>(null)
+    const [viewingShift, setViewingShift] = useState<Shift | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [isDeleting, setIsDeleting] = useState<string | null>(null)
@@ -87,12 +89,23 @@ export default function ShiftManagement() {
         setCurrentView("edit")
     }
 
+    const handleViewShift = (shift: Shift) => {
+        setViewingShift(shift)
+        setCurrentView("view")
+    }
+
+    const handleBackToMain = () => {
+        setCurrentView("main")
+        setEditingShift(null)
+        setViewingShift(null)
+    }
+
     // Calculate stats with improved logic
     const totalShifts = shifts.length
 
     // Get today's day name
     const today = new Date()
-    const todayDayName = today.toLocaleDateString("en-US", { weekday: "long" })
+    const todayDayName = today.toLocaleDateString("en-US", {weekday: "long"})
 
     // Count shifts for today
     const todayShifts = shifts.filter((shift) => {
@@ -101,10 +114,10 @@ export default function ShiftManagement() {
     }).length
 
     // Weekly shifts (next 7 days including today)
-    const weekDays = Array.from({ length: 7 }, (_, i) => {
+    const weekDays = Array.from({length: 7}, (_, i) => {
         const date = new Date(today)
         date.setDate(today.getDate() + i)
-        return date.toLocaleDateString("en-US", { weekday: "long" }).toLowerCase()
+        return date.toLocaleDateString("en-US", {weekday: "long"}).toLowerCase()
     })
 
     const thisWeekShifts = shifts.filter((shift) =>
@@ -113,7 +126,7 @@ export default function ShiftManagement() {
 
     // Show create form
     if (currentView === "create") {
-        return <CreateShiftPage onCreateShift={handleCreateShift} onCancel={() => setCurrentView("main")} />
+        return <CreateShiftPage onCreateShift={handleCreateShift} onCancel={handleBackToMain}/>
     }
 
     // Show edit form
@@ -122,10 +135,23 @@ export default function ShiftManagement() {
             <EditShiftPage
                 shift={editingShift}
                 onUpdateShift={handleUpdateShift}
-                onCancel={() => {
-                    setCurrentView("main")
-                    setEditingShift(null)
+                onCancel={handleBackToMain}
+            />
+        )
+    }
+
+    // Show view shift details
+    if (currentView === "view" && viewingShift) {
+        return (
+            <ViewShiftPage
+                shift={viewingShift}
+                onEdit={() => {
+                    setEditingShift(viewingShift)
+                    setCurrentView("edit")
                 }}
+                onDelete={() => handleDeleteShift(viewingShift.id)}
+                onBack={handleBackToMain}
+                isDeleting={isDeleting === viewingShift.id}
             />
         )
     }
@@ -139,7 +165,8 @@ export default function ShiftManagement() {
                         <div className="space-y-2">
                             <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Shift Management</h1>
                             <p className="text-slate-600 leading-relaxed">
-                                Organize and manage your team's work schedules with ease. View shifts in calendar format or browse
+                                Organize and manage your team's work schedules with ease. View shifts in calendar format
+                                or browse
                                 through detailed lists.
                             </p>
                         </div>
@@ -148,17 +175,18 @@ export default function ShiftManagement() {
                     {/* Error Alert */}
                     {error && (
                         <Alert className="mt-4 border-red-200 bg-red-50">
-                            <AlertCircle className="h-4 w-4 text-red-600" />
+                            <AlertCircle className="h-4 w-4 text-red-600"/>
                             <AlertDescription className="text-red-700">{error}</AlertDescription>
                         </Alert>
                     )}
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-                        <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                        <div
+                            className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
                             <div className="flex items-center gap-3">
                                 <div className="bg-blue-500 rounded-lg p-2">
-                                    <Clock className="w-5 h-5 text-white" />
+                                    <Clock className="w-5 h-5 text-white"/>
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-blue-700">Total Shifts</p>
@@ -167,10 +195,11 @@ export default function ShiftManagement() {
                             </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                        <div
+                            className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
                             <div className="flex items-center gap-3">
                                 <div className="bg-purple-500 rounded-lg p-2">
-                                    <Users className="w-5 h-5 text-white" />
+                                    <Users className="w-5 h-5 text-white"/>
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-purple-700">Today</p>
@@ -179,10 +208,11 @@ export default function ShiftManagement() {
                             </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                        <div
+                            className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
                             <div className="flex items-center gap-3">
                                 <div className="bg-green-500 rounded-lg p-2">
-                                    <Calendar className="w-5 h-5 text-white" />
+                                    <Calendar className="w-5 h-5 text-white"/>
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-green-700">This Week</p>
@@ -197,7 +227,8 @@ export default function ShiftManagement() {
                 {loading ? (
                     <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-12">
                         <div className="text-center">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                            <div
+                                className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mx-auto mb-4"></div>
                             <p className="text-gray-500">Loading shifts...</p>
                         </div>
                     </div>
@@ -206,7 +237,8 @@ export default function ShiftManagement() {
                     <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                             <div className="border-b border-slate-200 bg-slate-50">
-                                <TabsList className="grid w-full max-w-md grid-cols-2 m-4 h-full bg-white shadow-sm border border-slate-200">
+                                <TabsList
+                                    className="grid w-full max-w-md grid-cols-2 m-4 h-full bg-white shadow-sm border border-slate-200">
                                     <TabsTrigger
                                         value="calendar"
                                         className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-500
@@ -214,7 +246,7 @@ export default function ShiftManagement() {
                                    data-[state=active]:shadow-md transition-all duration-200
                                    flex items-center gap-2 py-3"
                                     >
-                                        <Calendar className="w-4 h-4" />
+                                        <Calendar className="w-4 h-4"/>
                                         Calendar View
                                     </TabsTrigger>
                                     <TabsTrigger
@@ -224,7 +256,7 @@ export default function ShiftManagement() {
                                    data-[state=active]:shadow-md transition-all duration-200
                                    flex items-center gap-2 py-3"
                                     >
-                                        <List className="w-4 h-4" />
+                                        <List className="w-4 h-4"/>
                                         List View
                                     </TabsTrigger>
                                 </TabsList>
@@ -235,10 +267,15 @@ export default function ShiftManagement() {
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <h2 className="text-xl font-semibold text-slate-900">Calendar View</h2>
-                                            <p className="text-slate-600 text-sm">Visual overview of all scheduled shifts across time</p>
+                                            <p className="text-slate-600 text-sm">Visual overview of all scheduled
+                                                shifts across time</p>
                                         </div>
                                     </div>
-                                    <CalendarView shifts={shifts} onCreateShift={() => setCurrentView("create")} />
+                                    <CalendarView
+                                        shifts={shifts}
+                                        onCreateShift={() => setCurrentView("create")}
+                                        onViewShift={handleViewShift}
+                                    />
                                 </div>
                             </TabsContent>
 
@@ -254,6 +291,7 @@ export default function ShiftManagement() {
                                     </div>
                                     <ShiftsList
                                         shifts={shifts}
+                                        onViewShift={handleViewShift}
                                         onCreateShift={() => setCurrentView("create")}
                                         onEditShift={handleEditShift}
                                         onDeleteShift={handleDeleteShift}
@@ -267,4 +305,5 @@ export default function ShiftManagement() {
             </div>
         </div>
     )
+
 }
