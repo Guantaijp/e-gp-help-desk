@@ -110,7 +110,7 @@ function AppContent() {
                 }
             />
             <Route
-                path="/settings"
+                path="/settings/skill-management"
                 element={
                     <ProtectedRoute>
                         <AppLayout>

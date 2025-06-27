@@ -168,9 +168,9 @@ export function GeneralSettings() {
         <div className="space-y-6">
             {/* Show indicator if this is new settings */}
             {isNewSettings && (
-                <Alert className="bg-blue-50 border-blue-200">
-                    <Info className="h-4 w-4 text-blue-600" />
-                    <AlertDescription className="text-blue-800">
+                <Alert className="mt-2 bg-purple-50">
+                    <Info className="h-4 w-4 text-purple-600" />
+                    <AlertDescription className="text-purple-800">
                         No settings found. You are creating new system settings. Please fill in the required fields and save.
                     </AlertDescription>
                 </Alert>
@@ -269,8 +269,8 @@ export function GeneralSettings() {
                             Available placeholders: {"{id}"} (ticket ID), {"{year}"} (current year), {"{month}"} (current month)
                         </p>
                         <Alert className="mt-2 bg-purple-50">
-                            <Info className="h-4 w-4" />
-                            <AlertDescription>
+                            <Info className="h-4 w-4 text-purple-600" />
+                            <AlertDescription className="text-purple-800">
                                 The ticket number format will be used to generate unique identifiers for all tickets in the system. Make
                                 sure to include the {"{id}"} placeholder which will be replaced with the actual ticket ID.
                             </AlertDescription>
@@ -296,8 +296,8 @@ export function GeneralSettings() {
                             Available placeholders: {"{id}"} (employee ID), {"{year}"} (current year), {"{month}"} (current month)
                         </p>
                         <Alert className="mt-2 bg-purple-50">
-                            <Info className="h-4 w-4" />
-                            <AlertDescription>
+                            <Info className="h-4 w-4 text-purple-600" />
+                            <AlertDescription className="text-purple-800">
                                 The employee ID format will be used to generate unique identifiers for all employees in the system. Make
                                 sure to include the {"{id}"} placeholder which will be replaced with the actual employee ID.
                             </AlertDescription>
@@ -332,9 +332,9 @@ export function GeneralSettings() {
                                     ))}
                                 </SelectContent>
                             </Select>
-                            <Alert className="flex-1 bg-purple-50">
-                                <Info className="h-4 w-4" />
-                                <AlertDescription>
+                            <Alert className="mt-2 bg-purple-50">
+                                <Info className="h-4 w-4 text-purple-600" />
+                                <AlertDescription className="text-purple-800">
                                     This setting determines which day appears first in calendars and weekly views throughout the system.
                                 </AlertDescription>
                             </Alert>
@@ -405,9 +405,9 @@ export function GeneralSettings() {
                                 </tbody>
                             </table>
                         </div>
-                        <Alert className="mt-3 bg-purple-50">
-                            <Info className="h-4 w-4" />
-                            <AlertDescription>
+                        <Alert className="mt-2 bg-purple-50">
+                            <Info className="h-4 w-4 text-purple-600" />
+                            <AlertDescription className="text-purple-800">
                                 These business hours settings will be enforced when creating new work shifts and for call center
                                 operations.
                             </AlertDescription>
