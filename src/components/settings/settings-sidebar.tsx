@@ -2,17 +2,8 @@
 import { useState } from 'react'
 import GeneralSettingsPage from "./general-settings/MainGeneralSettings.tsx";
 import SkillManagementPage from "./skillmanagement/MainSkillManagement.tsx";
+import TicketConfigurationPage from "./ticket-configuration/MainTicketConfiguration.tsx";
 
-
-
-const TicketSettings = () => (
-    <div className="space-y-6">
-        <div className="bg-white p-6 rounded-lg border">
-            <h3 className="text-lg font-medium mb-4">Ticket Configuration</h3>
-            <p className="text-gray-600">Configure ticket settings and workflows here.</p>
-        </div>
-    </div>
-)
 
 const CallCenterSettings = () => (
     <div className="space-y-6">
@@ -186,7 +177,7 @@ export default function SettingsPage() {
             case "general":
                 return <GeneralSettingsPage />
             case "tickets":
-                return <TicketSettings />
+                return <TicketConfigurationPage />
             case "call-center":
                 return <CallCenterSettings />
             case "knowledge-base":
