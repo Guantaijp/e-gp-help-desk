@@ -9,8 +9,7 @@ import { useAuth, AuthProvider } from "./hooks/use-auth.tsx"
 import { Skeleton } from "./components/ui/skeleton.tsx"
 import { LoginForm } from "./components/socialmedia/login-form.tsx"
 import ShiftManagement from "./components/shift/ShiftManagement.tsx";
-import SkillManagementPage from "./components/settings/skillmanagement/MainSkillManagement.tsx";
-import GeneralSettings from "./components/settings/general-settings/MainGeneralSettings.tsx"
+import SettingsPage from "./components/settings/settings-sidebar.tsx";
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -38,20 +37,13 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 function AppLayout({ children }: { children: React.ReactNode }) {
     return (
         <SidebarProvider>
-            <Sidebar />
-            <div className="min-h-screen w-full mx-auto bg-white">
-                <div className="flex h-screen">
-                    <main className="
-                        flex-1 flex flex-col overflow-hidden transition-all duration-300 ease-in-out
-                        ml-0 md:ml-0 lg:ml-44
-                    ">
-                        <div className="flex-1 overflow-y-auto">
-                            <div className="p-4 sm:p-6 lg:p-8 w-full">
-                                {children}
-                            </div>
-                        </div>
-                    </main>
-                </div>
+            <div className="w-full h-screen flex bg-white overflow-hidden">
+                <Sidebar className="flex-shrink-0" />
+                <main className="flex-1 flex flex-col overflow-auto">
+                    <div className="p-4 sm:p-6 lg:p-8">
+                        {children}
+                    </div>
+                </main>
             </div>
         </SidebarProvider>
     )
@@ -63,7 +55,7 @@ function AppContent() {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center">
+            <div className="flex items-center justify-center w-full">
                 <div className="space-y-4 text-center">
                     <Skeleton className="h-8 w-48 mx-auto" />
                     <Skeleton className="h-4 w-32 mx-auto" />
@@ -110,25 +102,25 @@ function AppContent() {
                 }
             />
             <Route
-                path="/settings/skill-management"
+                path="/settings"
                 element={
                     <ProtectedRoute>
                         <AppLayout>
-                            <SkillManagementPage />
+                            <SettingsPage />
                         </AppLayout>
                     </ProtectedRoute>
                 }
             />
-            <Route
-                path="/settings/general"
-                element={
-                    <ProtectedRoute>
-                        <AppLayout>
-                            <GeneralSettings />
-                        </AppLayout>
-                    </ProtectedRoute>
-                }
-            />
+            {/*<Route*/}
+            {/*    path="/settings/general"*/}
+            {/*    element={*/}
+            {/*        <ProtectedRoute>*/}
+            {/*            <AppLayout>*/}
+            {/*                <GeneralSettings />*/}
+            {/*            </AppLayout>*/}
+            {/*        </ProtectedRoute>*/}
+            {/*    }*/}
+            {/*/>*/}
 
             {/* Default redirects */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />

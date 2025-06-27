@@ -22,7 +22,7 @@ export const sidebarItems = [
     { icon: Workflow, label: "Workflow", url: "/workflow" },
     { icon: BarChart3, label: "Reports", url: "/reports" },
     { icon: Users, label: "Users", url: "/users" },
-    { icon: Settings, label: "Settings", url: "/settings/general" },
+    { icon: Settings, label: "Settings", url: "/settings" },
 ]
 
 export const colorOptions = ["#22d3ee", "#f472b6", "#a78bfa", "#fb7185", "#fbbf24", "#94a3b8", "#f87171", "#60a5fa"]
