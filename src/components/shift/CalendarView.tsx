@@ -11,6 +11,7 @@ import type { Shift } from "../../types/shift"
 interface CalendarViewProps {
     shifts: Shift[]
     onCreateShift: () => void
+    onViewShift: (shift: Shift) => void;
 }
 
 export default function CalendarView({ shifts, onCreateShift }: CalendarViewProps) {

@@ -75,7 +75,7 @@ export default function EditShiftPage({ shift, onUpdateShift, onCancel }: EditSh
 
     return (
         <div className="flex-1 p-6 bg-white min-h-screen">
-            <div className="max-w-4xl mx-auto space-y-6">
+            <div className="max-w-8xl mx-auto space-y-6">
                 <div className="flex items-center gap-4">
                     <Button variant="ghost" size="sm" onClick={onCancel}>
                         <ArrowLeft className="w-4 h-4 mr-2" />

@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Card, CardContent } from "../ui/card"
 import { Button } from "../ui/button"
+import { ArrowLeft } from "lucide-react"
 import ShiftForm from "./form/ShiftForm"
 import type { NewShift } from "../../types/shift"
 
@@ -75,7 +76,20 @@ export default function CreateShiftPage({ onCreateShift, onCancel }: CreateShift
 
     return (
         <div className="flex-1 p-6">
-            <Card className="max-w-4xl mx-auto">
+            {/* Back Button */}
+            <div className="mb-4">
+                <Button
+                    variant="ghost"
+                    onClick={onCancel}
+                    className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
+                    disabled={isSubmitting}
+                >
+                    <ArrowLeft className="h-4 w-4" />
+                    Back
+                </Button>
+            </div>
+
+            <Card className="max-w-8xl mx-auto">
                 <CardContent className="p-6">
                     <div className="mb-6">
                         <h1 className="text-2xl font-bold text-gray-900">Create New Shift</h1>
